@@ -1,6 +1,6 @@
 # Pyshadowserver
 
-[![PyPI](https://img.shields.io/pypi/v/pysafebrowsing)](https://pypi.org/project/pysafebrowsing/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/pysafebrowsing)](https://pypistats.org/packages/pysafebrowsing) [![PyPI - License](https://img.shields.io/pypi/l/pysafebrowsing)](LICENSE) [![GitHub issues](https://img.shields.io/github/issues/te-k/pysafebrowsing)](https://github.com/Te-k/pysafebrowsing/issues)
+[![PyPI](https://img.shields.io/pypi/v/pyshadowserver)](https://pypi.org/project/pyshadowserver/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/pyshadowserver)](https://pypistats.org/packages/pyshadowserver) [![PyPI - License](https://img.shields.io/pypi/l/pyshadowserver)](LICENSE) [![GitHub issues](https://img.shields.io/github/issues/te-k/pyshadowserver)](https://github.com/Te-k/pyshadowserver/issues)
 
 Python library to interact with the [Shadow Server](https://www.shadowserver.org/what-we-do/network-reporting/) [Report API](https://github.com/The-Shadowserver-Foundation/api_utils/wiki).
 
