@@ -1,6 +1,3 @@
-import configparser
-import os
-
 import pytest
 
 from pyshadowserver import InvalidConfiguration, ShadowServer

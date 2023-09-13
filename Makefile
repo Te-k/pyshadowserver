@@ -2,7 +2,7 @@ PWD = $(shell pwd)
 
 check:
 	flake8
-	ruff check --ignore E501 --ignore F401 .
+	ruff check .
 	pytest
 	black --check .
 
