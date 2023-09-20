@@ -39,7 +39,6 @@ class AccessDenied(InvalidAnswer):
     pass
 
 
-# TODO: https://github.com/The-Shadowserver-Foundation/api_utils/wiki/API:-Malware-Research
 class ShadowServer:
     """
     Main Shadow Server class
@@ -76,7 +75,11 @@ class ShadowServer:
         """
         Save the current configuration to the configuration file
         """
-        config = configparser.ConfigParser()
+        try:
+            config = self.load_config()
+        except InvalidConfiguration:
+            config = configparser.ConfigParser()
+
         config["ShadowServer"] = {}
         config["ShadowServer"]["api_key"] = self.api_key
         config["ShadowServer"]["api_secret"] = self.api_secret
@@ -97,6 +100,7 @@ class ShadowServer:
         """
         if self.api_secret is None or self.api_key is None:
             raise MissingCredentials()
+
         data["apikey"] = self.api_key
         secret_bytes = bytes(str(self.api_secret), "utf-8")
         request_bytes = bytes(json.dumps(data), "utf-8")
@@ -110,8 +114,11 @@ class ShadowServer:
                 raise InvalidAnswer(
                     "Error HTTP return code %i: %s", r.status_code, r.text
                 )
-        # FIXME: raise exception if invalid JSON
-        return r.json()
+
+        try:
+            return r.json()
+        except json.JSONDecodeError:
+            raise InvalidAnswer("Invalid reponse JSON format")
 
     def _get(self, uri: str, params: Dict[str, str]) -> Any:
         """
@@ -121,7 +128,11 @@ class ShadowServer:
         r = requests.get(uri, params=params, headers={"User-Agent": self.user_agent})
         if r.status_code != 200:
             raise InvalidAnswer("Error HTTP return code %i: %s", r.status_code, r.text)
-        return r.json()
+
+        try:
+            return r.json()
+        except json.JSONDecodeError:
+            raise InvalidAnswer("Invalid reponse JSON format")
 
     def asn(
         self,
